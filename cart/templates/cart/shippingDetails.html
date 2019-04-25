@@ -1,0 +1,77 @@
+{% extends 'products/layout.html' %}
+
+{% block content %}
+<br>
+<br>
+
+<div class="container">
+
+  <h1>Detalhes de envio</h1>
+
+  {% if not user.userprofile.anonymous_user %}
+  <form id="form" method="post" action="{% url 'shipping_details' %}">
+      {% csrf_token %}
+      <input id="id_fullname" name="full_name"
+                 type="hidden" class="form-control">
+      <button type="submit" class="btn btn-secondary" name="button">Quero usar os dados da minha conta</button>
+  </form>
+  <br><br><br>
+  {% endif %}
+
+  <div id="content-container" class="container p-none">
+      <div class="lgn-container col-lg-8">
+          <form id="form" method="post" action="{% url 'shipping_details' %}">
+              {% csrf_token %}
+              <table class="table">
+                  <tr>
+                      <td><label for="id_fullname">Nome Completo</label></td>
+                      <td><input required id="id_fullname" name="full_name"
+                                 type="text" class="form-control"></td>
+                  </tr>
+                  <tr>
+                      <td><label for="id_addres">Morada</label></td>
+                      <td><input required id="id_addres" name="adress"
+                                 type="text" class="form-control" placeholder="Endereço, porta, andar ...."></td>
+                  </tr>
+                  <tr>
+                      <td><label for="id_addres1">Cidade</label></td>
+                      <td><input required id="id_addres1" name="city"
+                                 type="text" class="form-control" placeholder=""></td>
+                  </tr>
+                  <tr>
+                      <td><label for="id_addres1">Localidade</label></td>
+                      <td><input required id="id_addres1" name="localidade"
+                                 type="text" class="form-control" placeholder=""></td>
+                  </tr>
+                  <tr>
+                      <td><label for="id_addres1">Código Postal</label></td>
+                      <td><input required id="id_addres1" name="zip"
+                                 type="text" class="form-control" placeholder=""></td>
+                  </tr>
+                  <tr>
+                      <td><label for="id_addres1">País</label></td>
+                      <td><input required id="id_addres1" name="country"
+                                 type="text" class="form-control" placeholder=""></td>
+                  </tr>
+                  <tr>
+                      <td><label for="id_addres1">Número de Telemóvel</label></td>
+                      <td><input required id="id_addres1" name="phone_number"
+                                 type="text" class="form-control" placeholder=""></td>
+                  </tr>
+                  <tr>
+                      <td><label for="id_addres1">Email</label></td>
+                      <td><input required id="id_addres1" name="email"
+                                 type="email" class="form-control" placeholder=""></td>
+                  </tr>
+              </table>
+              {% if form.errors %}
+                  <p class=" label label-danger">{{ form.errors }}</p>
+              {% endif %}
+              <input type="submit" value="Submit"
+                     class="btn btn-primary pull-right" />
+          </form>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

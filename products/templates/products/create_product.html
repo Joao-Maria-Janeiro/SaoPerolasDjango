@@ -1,0 +1,90 @@
+{% extends 'products/layout.html' %}
+
+
+{% block style %}
+@media only screen and (max-width: 600px)  {
+
+}
+
+{% endblock %}
+
+
+{% block content %}
+<br>
+<br>
+{% for field in form %}
+  {{field.error}}
+  {% endfor %}
+
+{% if user.is_superuser %}
+<h1>Crie o seu Produto</h1>
+  <h2> Hello {{ user.username }}</h2>
+<div id="content-container" class="container p-none">
+    <div class="lgn-container col-lg-8">
+        <form id="login-form" action="{% url 'create_product' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table class="table">
+                <tr>
+                    <td><label for="id_name">Name</label></td>
+                    <td><input id="id_name" name="name" style="width:400px;"
+                               type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td><label for="id_description">Description</label></td>
+                    <td><input id="id_description" name="description"
+                               type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td><label for="id_price">Price</label></td>
+                    <td><input id="id_price" name="price"
+                               type="number" class="form-control"></td>
+                </tr>
+                <tr>
+                  <td>
+                    {{ form.image }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                       <label class="form-check-label">
+                         Colar: {{ form.colar }}
+                       </label>
+                     </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                       <label class="form-check-label">
+                         Brinco: {{ form.brinco }}
+                       </label>
+                     </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                       <label class="form-check-label">
+                         Pulseira: {{ form.pulseira }}
+                       </label>
+                     </div>
+                  </td>
+                </tr>
+            </table>
+            {% if form.errors %}
+                <p class=" label label-danger">
+                    {{ form.errors }}
+                </p>
+            {% endif %}
+            <input type="submit" value="Update"
+                   class="btn btn-primary pull-right" />
+        </form>
+    </div>
+</div>
+
+{% else %}
+<h1>You do not have permissions to access this page</h1>
+{% endif%}
+
+{% endblock %}

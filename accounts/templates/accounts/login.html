@@ -1,0 +1,62 @@
+{% extends 'products/layout.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+<br>
+{% if user.is_authenticated %}
+<h2> You are already logged in {{ user.username }}</h2>
+
+{% else %}
+
+<div class="container">
+      <br>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <h3 style="color:gray;" >Já sou utilizador São Pérolas.</h3>
+          <p style="color:gray;">Introduza o seu email e a sua palavra-passe para se identificar.</p>
+          <form id="login-form" method="post" action="{% url 'login' %}">
+              {% csrf_token %}
+              <table class="table">
+                  <tr>
+                      <td><input id="id_email" name="email"
+                                 type="text" class="form-control" placeholder="Introduza aqui o seu email"></td>
+                  </tr>
+                  <tr>
+                      <td><input id="id_password" name="password"
+                                 type="password" class="form-control" placeholder="Password"></td>
+                  </tr>
+              </table>
+              {% if form.errors %}
+                  <p class=" label label-danger">
+                      Your username and password didn't match.
+                      Please try again.
+                  </p>
+              {% endif %}
+              {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{request.GET.next}}">
+              {% endif %}
+              <button class="btn btn-secondary" type="submit" name="button" value="Login">INICIAR SESSÃO</button>
+
+          </form>
+          {% if error %}
+          <p>{{error}}</p>
+          {% endif %}
+        </div>
+        <div class="col-md-6">
+            <h3 style="color:gray;">Quero ser utilizador São Pérolas</h3>
+            <p style="color:gray;">Se ainda não tem uma conta de usuário de São Pérolas.pt utilize esta opção para aceder ao formulário de registo.</p>
+            <br>
+            <p style="color:gray;">Solicitar-lhe-emos a informação imprescindível para agilizar o processo de compra.</p>
+            <br>
+            <a href="{% url 'signup' %}"><button type="submit" class="btn btn-secondary">CRIAR CONTA</button></a>
+      </div>
+    </div>
+
+    <br><br><br><br><br><br>
+
+
+    {% endif %}
+{% endblock %}

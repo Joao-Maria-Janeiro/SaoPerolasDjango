@@ -1,0 +1,53 @@
+{% extends 'products/layout.html' %}
+{% load static %}
+
+{% block style %}
+.bg-image{
+  background-size:cover;
+  height:100%;
+  height: 91vh;
+  background-attachment:scroll;
+}
+.tittlez{
+  text-align: center;
+  color: gray;
+}
+{% endblock %}
+
+
+{% block content %}
+<!-- <div class="bg-image"> -->
+  <img  style="width: 100%; margin-bottom:20px;" src="{{ image.image.url }}" alt="">
+
+    <!-- </div> -->
+
+    <div class="container">
+      <div class="tittlez">
+        <br>
+        <br>
+        <h4>Bijuterias 2019</h4>
+        <br>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <a href="{% url 'products' %}">
+            <img width="300" src="{{colar.image.url}}" alt="">
+            <p style="color:gray;">Colares</p>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url 'index_pulseira' %}">
+            <img width="300" src="{{pulseira.image.url}}" alt="">
+            <p style="color:gray;">Pulseiras</p>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url 'index_brincos' %}">
+            <img width="300" src="{{brinco.image.url}}" alt="">
+            <p style="color:gray;">Brincos</p>
+          </a>
+        </div>
+      </div>
+      <br>
+    </div>
+{% endblock %}

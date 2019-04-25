@@ -1,0 +1,7 @@
+Ao criar um utilizador se falhar apaga tudo
+palavra passe com menos verificações
+Se o utilizador não tiver inserido todas as infos do shipping dá erro
+Adicionar sem conta adiciona uns nos outros
+Mudar a base de dados
+Tudo na mesma língua
+O logo do São pérolas não está centrado

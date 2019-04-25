@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>São Pérolas | Colares</title>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'img/favicon/site.webmanifest' %}">
+  <link rel="mask-icon" href="{% static 'img/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="É uma marca registada que trabalha com as tradicionais pérolas com uma abordagem contemporânea !!">
+<meta name="keywords" content="Colares, perolas, sao perolas, colares, são pérolas, São pérolas, São Pérolas">
+<meta name="author" content="João Maria Janeiro">
+{% block style-n %}
+{% endblock %}
+
+  <style>
+
+  .thumbnail {
+    border: 0 none;
+    box-shadow: none;
+    width: 100%;
+    overflow: hidden;
+}
+
+  @media screen and (min-width: 960px) {
+    .thumbnail img{
+      -webkit-transition: all 0.5s ease;
+    }
+    .thumbnail img:hover{
+      transform: scale(1.8);
+    }
+  }
+
+  .navbar-brand {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 5;
+      text-align: center;
+      margin: auto;
+  }
+  .navbar-toggle {
+      z-index:3;
+  }
+  .navbar {
+    min-height: 90px;
+  }
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  @media (min-width: 768px) {
+  .abs-center-x {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+}
+
+{% block style %}
+{% endblock %}
+  </style>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="{% url 'products' %}">Colares &emsp; &nbsp; &ensp;  ></a>
+    <a href="{% url 'index_pulseira' %}">Pulseiras &emsp; &ensp; ></a>
+    <a href="{% url 'index_brincos' %}">Brincos &emsp; &nbsp; &ensp; ></a>
+  </div>
+
+  <div class="sidenav" id="mySidenav2">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
+    <a href="{% url 'saved_products' %}">Produtos Guardados </a>
+    <a href="{% url 'user_info' %}">Editar Informaçoes </a>
+    {% if user.is_authenticated %}
+    <form class="logout-link" action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button style="margin-left:30px;" class="btn btn-secondary" type="submit">Logout</button>
+    </form>
+    {% else %}
+    <a href="{% url 'login' %}"><button type="button" class="btn btn-secondary" style="margin-left:30px;" >Iniciar Sessão</button></a>
+    {% endif %}
+  </div>
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <ul class="nav navbar-nav navbar-center abs-center-x">
+          <li class="nav-item"><a class="nav-link" href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" width="70" ></a></li>
+      </ul>
+        <ul class="nav navbar-nav">
+            <li class="nav-item active">
+                <span class="navbar-toggler-icon" onclick="openNav()"></span>&ensp;Menu
+            </li>
+        </ul>
+        <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active" style="text-decoration:none;color:gray" href="#" onclick="openNav2()" > <i class="fas fa-user"></i> Conta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="text-decoration:none;color:gray" href="{% url 'index-cart' %}"> <i class="fas fa-shopping-bag"></i> Cesto de Compras</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+    {% block content %}
+    {% endblock %}
+
+  <footer> <center>
+    <a style="color:gray;" href="https://www.instagram.com/sao.perolas/"><i style="font-size: 2em;" class="fab fa-instagram"></i></a>
+    <a style="color:gray;" href="https://www.facebook.com/saoperolas"><i style="font-size: 2em;" class="fab fa-facebook-square"></i></a>
+    <a style="color:gray;" href="https://api.whatsapp.com/send?phone=351960003160"><i style="font-size: 2em;" class="fab fa-whatsapp"></i></a>
+    <br>
+    <br>
+    <img width="150PX" src="{% static 'img/graylogo.png' %}">
+    <br>
+    <br>
+    <b style="font-size:15px;" >SHOW ROOM.</b> RUA CORONEL PEREIRA DA SILVA, 2B
+    <p style="font-size:15px;" >1300-147 LISBOA, PORTUGAL</p>
+    </center>
+    <p style="FONT-SIZE:10px;" >DIREITOS DE AUTOR © 2019 SÃO PÉROLAS</p>
+  </footer>
+
+
+  {% block script%}
+  {% endblock %}
+
+  <script>
+
+        function openNav() {
+          document.getElementById("mySidenav").style.opacity = "0.8";
+          document.getElementById("mySidenav").style.width = "250px";
+          document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+
+        }
+
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.body.style.backgroundColor = "white";
+
+        }
+
+        function openNav2() {
+          document.getElementById("mySidenav2").style.opacity = "0.8";
+          document.getElementById("mySidenav2").style.width = "250px";
+          document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+
+        }
+
+        function closeNav2() {
+          document.getElementById("mySidenav2").style.width = "0";
+          document.body.style.backgroundColor = "white";
+
+        }
+        </script>
+      </body>
+    </html>

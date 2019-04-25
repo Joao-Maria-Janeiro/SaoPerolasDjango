@@ -1,0 +1,102 @@
+{% extends 'products/layout.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+<br>
+
+{% if user.is_authenticated %}
+<h2> You already have an account {{ user.username }}</h2>
+
+{% else %}
+
+<div class="container">
+      <br>
+      <br>
+      <h4 style="color:gray;">Escreva os seus dados pessoais</h4>
+      <br>
+      <br>
+      {% if error %}
+      <p>{{error}}</p>
+      {% endif %}
+      <form id="signup-form" method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input type="email" required class="form-control"id="id_email" name="email" placeholder="Email">
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input required type="password" class="form-control" id="id_password1" name="password1" placeholder="Password">
+          </div>
+          <div class="form-group col-md-6">
+            <input required type="password" class="form-control" id="id_password2" name="password2" placeholder="Repetir Password">
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input required type="text" class="form-control" id="id_first_name" name="first_name" placeholder="Nome">
+          </div>
+          <div class="form-group col-md-6">
+            <input required type="text" class="form-control" id="id_last_name" name="last_name" placeholder="Apelidos">
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input required type="text" class="form-control" id="id_country" name="country" placeholder="País">
+          </div>
+          <div class="form-group col-md-6">
+            <input required type="text" class="form-control" id="id_address" name="address" placeholder="Morada">
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input required type="text" class="form-control" name="zip_code" id="id_zip_code" placeholder="Codigo Postal">
+          </div>
+          <div class="form-group col-md-6">
+            <input required type="text" class="form-control" name="city" id="id_city" placeholder="Cidade">
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input required type="text" class="form-control" name="localidade" id="id_localidade" placeholder="Localidade">
+          </div>
+          <div class="form-group col-md-6">
+            <input required type="text" class="form-control" name="cell_number" id="id_cell_number" placeholder="Telemóvel">
+          </div>
+        </div>
+
+        <br>
+        <br>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck" required>
+            <label class="form-check-label" for="gridCheck">
+              Li e entendi a Política de Privacidade
+            </label>
+          </div>
+        </div>
+        {% if form.errors %}
+            <p class=" label label-danger">{{ form.errors }}</p>
+        {% endif %}
+        <button type="submit" value="Signup"  class="btn btn-secondary">Registar</button>
+      </form>
+    </div>
+
+
+
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'accounts/base_layout.html' %}
+
+{% block content %}
+<br>
+<br>
+<h1> Restricted </h1>
+{% if user.is_authenticated %}
+<h2> Hello {{ user.username }}</h2>
+{% endif %}
+{% endblock %}

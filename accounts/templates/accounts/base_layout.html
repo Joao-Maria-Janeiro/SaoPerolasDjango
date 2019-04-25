@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>São Pérolas | Colares</title>
+
+  <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="É uma marca registada que trabalha com as tradicionais pérolas com uma abordagem contemporânea !!">
+<meta name="keywords" content="Colares, perolas, sao perolas, colares, são pérolas, São pérolas, São Pérolas">
+<meta name="author" content="João Maria Janeiro">
+  <style>
+
+  .pull-left img{
+
+    padding-top: 4px;
+
+    padding-left: 4px;
+
+    height: 45px;
+
+  }
+  .container-fluid{
+
+    background-color: #ffffff;
+
+  }
+
+  .site-form{
+    margin-top: 60px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .site-form input, .site-form textarea{
+    display: block;
+  }
+
+  .helptext, .helptext ul{
+    margin: 0 auto 20px;
+    color: #bbb;
+    font-size: 0.9em;
+    display: block;
+  }
+  .errorlist li{
+    padding: 10px;
+    list-style-type: none;
+    border: 1px solid #ff5722;
+    color: #ff5722;
+    margin: 10 px 0;
+  }
+  .errorlist{
+    padding: 0;
+  }
+  .site-form input[type="submit"]{
+    margin-top: 20px;
+  }
+  </style>
+
+      <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+
+
+</head>
+
+<body>
+
+
+  <div class="container">
+    <!-- .navbar-fixed-top, or .navbar-fixed-bottom can be added to keep the nav bar fixed on the screen -->
+    <nav class="navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+          <!-- Button that toggles the navbar on and off on small screens -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+
+          <!-- Hides information from screen readers -->
+            <span class="sr-only"></span>
+
+            <!-- Draws 3 bars in navbar button when in small mode -->
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <!-- You'll have to add padding in your image on the top and right of a few pixels (CSS Styling will break the navbar) -->
+          <a class="pull-left" href="{% url 'index' %}"><img src="{% static 'img/favicon.png' %}"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'index' %}">Home<span class="sr-only"></span></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produtos <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+               <a tabindex="-1" href="#">Colares</a>
+               <ul class="dropdown-menu">
+                 <li><a tabindex="-1" href="{% url 'products' %}">Compridos</a></li>
+                 <li><a href="curtos.html">Curtos</a></li>
+                 <li><a href="#">Fios</a></li>
+                 <li role="separator" class="divider"></li>
+               </ul>
+             </li>
+                <li><a href="{% url 'index_pulseira' %}">Pulseiras</a></li>
+                <li><a href="{% url 'index_brincos' %}">Brincos</a></li>
+              </ul>
+            </li>
+            <li><a href="{% url 'contactos' %}" data-toggle="tooltip" data-placement="left" title="">Contactos</a></li>
+            <li><a href="{% url 'index-cart' %}"><img src="{% static 'img/malinha.png' %}" border="0" width="15" height="20"></a></li>
+            {% if user.is_authenticated %}
+            <li>
+              <form class="logout-link" action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-regular" type="submit">Logout</button>
+              </form>
+            </li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Signup</a></li>
+            {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    </div>
+    <br>
+    <br>
+
+
+
+    <br>
+    <br>
+
+<div class="container">
+
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+     <script src="{% static 'bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>
